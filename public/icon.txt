@@ -1,0 +1,9 @@
+1. Wifi: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Awifi%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+2. Ruang Cuci: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Alocal_laundry_service%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+3. Ruang Jemur: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Adry_cleaning%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+4. Dapur Umum: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acooking%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+5. CCTV 24 jam: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acamera_video%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+6. Pengurus Kos: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Amop%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+7. Balkon: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Abalcony%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+8. Motor: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Atwo_wheeler%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024
+9. Mobil: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Adirections_car%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024

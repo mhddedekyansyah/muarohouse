@@ -18,16 +18,23 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center py-2 px-5 bg-[#0E4473] text-white font-semibold shadow-md hover:bg-[#1467B0] focus:outline-none text-center;
+  }
+
+  .badge-full {
+    @apply w-[48px] h-[48px] rounded-full bg-yellow-300 text-amber-600 flex justify-center items-center
   }
 }
