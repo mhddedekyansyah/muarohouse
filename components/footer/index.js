@@ -4,7 +4,7 @@ import Image from 'next/image'
 import logo from '../../public/logo_footer_muaro.webp'
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = ({ wa }) => {
     return (
         <>
             <footer className="footer md:footer-center bg-[url('/background_footer.webp')] py-[25px] md:py-[32px]">
@@ -19,7 +19,7 @@ const Footer = () => {
                         <Link target="_blank" rel="noopener noreferrer" href="https://api.whatsapp.com/send?phone=6281997008336&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai" className=" btn-primary w-full md:w-32  btn-sm bg-white rounded-md flex justify-center items-center"><FaInstagram className='text-pink-700' />
                             <p className='ml-3 text-black'>instagram</p>
                         </Link>
-                        <Link target="_blank" rel="noopener noreferrer" href="https://api.whatsapp.com/send?phone=6281997008336&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai" className=" btn-primary w-full md:w-32 btn-sm text-xs bg-yellow-500 rounded-md flex justify-center items-center">Whatsapp kami</Link>
+                        <Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${wa}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai`} className=" btn-secondary w-full md:w-32 btn-sm text-xs  rounded-md flex justify-center items-center">Whatsapp kami</Link>
                     </div>
                 </nav>
 

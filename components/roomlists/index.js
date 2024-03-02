@@ -3,7 +3,7 @@
 import { useState, Suspense, useCallback, memo } from 'react';
 import ModalRoom from '../modal';
 
-const RoomLists = ({ initialData, isLoading, onClick }) => {
+const RoomLists = ({ units, isLoading }) => {
     const [openModal, setOpenModal] = useState(false);
     const [data, setData] = useState(null);
 
@@ -88,17 +88,12 @@ const RoomLists = ({ initialData, isLoading, onClick }) => {
 
     return (
 
-        <div className='-mt-36 md:-mt-16 -z-10 bg-[url("/background_produk.webp")] py-44' data-aos="fade-up" id='rooms'>
-            {/* card primary */}
+        <>
+            {/* modal room */}
+            <ModalRoom isOpen={openModal} onClose={onClose} data={data} />
 
-            <div className="md:block mx-auto">
-                <div className="flex flex-wrap justify-center">
-
-                    {/* modal room */}
-                    <ModalRoom isOpen={openModal} onClose={onClose} data={data} />
-
-                    {/* <Suspense fallback={<p>Loading...</p>}> */}
-                    {/* {datas.map((d) => {
+            {/* <Suspense fallback={<p>Loading...</p>}> */}
+            {/* {datas.map((d) => {
                         return <div role='button' className="card w-80 m-2 bg-base-100 shadow-2xl" >
                             <figure><img onClick={() => onOpenModal(d)} src="/tipex.webp" alt="TipeX" /></figure>
                             <div className="card-body">
@@ -124,17 +119,56 @@ const RoomLists = ({ initialData, isLoading, onClick }) => {
                             </div>
                         </div>
                     })} */}
-                    {Array.from(initialData)?.map((d) => (
-                        <p key={d.id}>{d.id}{d.title}</p>
+            {units && Object.keys(units).map((key, index) => {
+                if (units.hasOwnProperty(key)) {
+                    return Array.from(units[key]).map((data, i) => {
+                        const loc = () => {
+                            switch (data.locationcode) {
+                                case 'PC':
+                                    return 'Pancing'
+                                case 'TS':
+                                    return 'Tuasan'
+                                case 'TA':
+                                    return 'Tuamang'
+                                default:
+                                    return "None"
+                            }
+                        }
+                        return <div className="card w-80 m-2 bg-base-100 shadow-2xl" key={i}>
+                            <figure><img src={`${data.image ?? "/tipex.webp"}`} alt="TipeX" /></figure>
+                            <div className="card-body">
+                                <div className='space-y-2'>
+                                    <div className="badge badge-success text-white">Lokasi {loc(data)}</div>
+                                    <h2 className="card-title">{data.name}</h2>
+                                    <h3 className='text-green-600 text-[24px] font-semibold'>{data.total} Tersedia</h3>
+                                    <ol>
+                                        <li>
+                                            <p className='text-gray-700 text-[14px] font-semibold'>Fasilitas</p>
+                                            <ul className='ps-5 mt-1 list-disc list-inside text-[#475467] font-light'>
+                                                {data.facilities.slice(0, 3).map((facility, i) => (
+                                                    <li key={i}>{facility}</li>
+                                                ))}
+                                            </ul>
+                                        </li>
+                                    </ol>
 
-                    ))}
+                                </div>
+                                <div className="grid grid-flow-col gap-3">
 
-                    {/* </Suspense> */}
+                                    <button onClick={() => onOpenModal(data)} className="w-full btn btn-sm bg-white  text-[#344054] flex  justify-center text-xs rounded-[8px]">Lihat Detail</button>
 
-                </div>
-                <button onClick={onClick} className='btn-primary rounded-[8px] block mx-auto mt-10 text-white'>{isLoading ? "Loading" : "Muat lebih banyak"}</button>
-            </div>
-        </div >
+                                    <button className="w-full btn-primary btn-sm text-white flex  justify-center text-xs rounded-[8px]">WhatsApp</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    })
+                }
+            })}
+
+            {/* </Suspense> */}
+
+        </>
 
     )
 }

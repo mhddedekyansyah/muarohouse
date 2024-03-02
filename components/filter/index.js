@@ -1,8 +1,23 @@
-import React from 'react'
+"use client"
+
+import React, { useState, memo } from 'react'
 import { FaLocationDot } from "react-icons/fa6";
 import { MdApartment } from "react-icons/md";
 
-const Filter = () => {
+const Filter = ({ locations, onClickFilter }) => {
+    const [location, setLocation] = useState("")
+    const [tipe, setTipe] = useState("")
+
+    const onChangeLoc = (e) => {
+
+        setLocation(e.target.value)
+    }
+
+    const onChangeTypeRoom = (e) => {
+
+        setTipe(e.target.value)
+    }
+
     return (
 
         <div className='relative z-40'>
@@ -13,16 +28,13 @@ const Filter = () => {
                             <span className="label-text">Lokasi</span>
                         </div>
                         <div className="relative inline-flex ">
-                            <select className="select select-bordered px-7 w-full">
-                                <option disabled selected>Lokasi</option>
-                                <option>Star Wars</option>
-                                <option>Harry Potter</option>
-                                <option>Lord of the Rings</option>
-                                <option>Planet of the Apes</option>
-                                <option>Star Trek</option>
+                            <select className="select select-bordered px-7 w-full" onChange={onChangeLoc}>
+                                <option disabled selected value={location} >Lokasi</option>
+                                {Array.from(locations)?.map(loc => (
+                                    <option key={loc.code} value={loc.code}>{loc.name}</option>
+                                ))}
                             </select>
                             <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">
-
                                 <FaLocationDot className='text-[#0E4473]' />
                             </div>
                         </div>
@@ -31,14 +43,15 @@ const Filter = () => {
                         <div className="label">
                             <span className="label-text">Tipe Kamar</span>
                         </div>
-                        <div className="relative inline-flex ">
-                            <select className="select select-bordered px-7 w-full">
-                                <option disabled selected>Tipe Kamar</option>
-                                <option>Star Wars</option>
-                                <option>Harry Potter</option>
-                                <option>Lord of the Rings</option>
-                                <option>Planet of the Apes</option>
-                                <option>Star Trek</option>
+                        <div className="relative inline-flex">
+                            <select className="select select-bordered px-7 w-full" onChange={onChangeTypeRoom}>
+                                <option disabled selected value={tipe} >Tipe Kamar</option>
+                                {Array.from(locations)?.map(data => {
+                                    return data.unit_types?.map(unit => (
+                                        <option key={unit.code} value={unit.code}>{unit.name}</option>
+                                    ))
+                                })}
+
                             </select>
                             <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">
 
@@ -47,9 +60,8 @@ const Filter = () => {
                         </div>
                     </label>
 
-
                     <div className="mt-2 md:mt-8">
-                        <button className='w-full btn-primary  rounded-md btn-md flex justify-center items-center'>Ayo cari</button>
+                        <button onClick={() => onClickFilter(location, tipe)} className='w-full btn-primary  rounded-md btn-md flex justify-center items-center'>Ayo cari</button>
                     </div>
                 </div>
 
@@ -59,4 +71,4 @@ const Filter = () => {
     )
 }
 
-export default Filter
+export default memo(Filter)
