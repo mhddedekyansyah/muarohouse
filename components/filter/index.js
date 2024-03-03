@@ -7,10 +7,20 @@ import { MdApartment } from "react-icons/md";
 const Filter = ({ locations, onClickFilter }) => {
     const [location, setLocation] = useState("")
     const [tipe, setTipe] = useState("")
-
+    const [resetType, setResetType] = useState(true)
+    const [types, setTypes] = useState([])
+    
     const onChangeLoc = (e) => {
-
+        console.log("locations", locations)
+        // setResetType(prev => !prev)
         setLocation(e.target.value)
+        const data = locations?.filter(location => location.code == e.target.value)
+
+
+        console.log("data filter", data)
+
+        setTypes(data)
+        setTipe("")
     }
 
     const onChangeTypeRoom = (e) => {
@@ -28,8 +38,8 @@ const Filter = ({ locations, onClickFilter }) => {
                             <span className="label-text">Lokasi</span>
                         </div>
                         <div className="relative inline-flex ">
-                            <select className="select select-bordered px-7 w-full" onChange={onChangeLoc}>
-                                <option disabled selected value={location} >Lokasi</option>
+                            <select className="select select-bordered px-7 w-full" value={location} onChange={onChangeLoc}>
+                                <option disabled  value="" >Lokasi</option>
                                 {Array.from(locations)?.map(loc => (
                                     <option key={loc.code} value={loc.code}>{loc.name}</option>
                                 ))}
@@ -44,13 +54,13 @@ const Filter = ({ locations, onClickFilter }) => {
                             <span className="label-text">Tipe Kamar</span>
                         </div>
                         <div className="relative inline-flex">
-                            <select className="select select-bordered px-7 w-full" onChange={onChangeTypeRoom}>
-                                <option disabled selected value={tipe} >Tipe Kamar</option>
-                                {Array.from(locations)?.map(data => {
-                                    return data.unit_types?.map(unit => (
-                                        <option key={unit.code} value={unit.code}>{unit.name}</option>
-                                    ))
-                                })}
+                            <select className="select select-bordered px-7 w-full" value={tipe} onChange={onChangeTypeRoom}>
+                                <option disabled  value="" >Tipe Kamar</option>
+                                {location && types?.map(type => {
+                                            return type.unit_types.map(u => (<option key={u.code} value={u.code}>{u.name}</option>))
+                                        })
+                                    }
+                                
 
                             </select>
                             <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">

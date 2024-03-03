@@ -4,7 +4,6 @@ import "./globals.css";
 import ScrollToTop from "@/components/scroll";
 import { Providers } from "./providers";
 import { Button } from "@nextui-org/react";
-import Head from "next/head";
 import Link from "next/link";
 
 const unna = Unna({ subsets: ["latin"], weight: '400', });
