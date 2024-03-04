@@ -17,13 +17,19 @@ import axios from "axios";
 
 
 export default function Home() {
-  const [dataInit, setDataInit] = useState(null)
+  if (typeof window !== "undefined") {
+    let value = localStorage.getItem("metadata") || ""
+    console.log("metadata", value)
+  }
+  const [dataInit, setDataInit] = useState()
   const [isUnitLoading, setUnitLoading] = useState(false)
   const [locationcode, setLocationcode] = useState("")
   const [code, setCode] = useState("")
   const [dataLocations, setDataLocations] = useState([])
   const [banners, setBanners] = useState([])
   const [units, setUnits] = useState()
+  const [sections, setSections] = useState()
+  const [isLoadingSection, setIsLoadingSection] = useState(false)
   const [isLoadingLocation, setLoadingLocation] = useState(false)
 
   // setup Aos
@@ -52,7 +58,7 @@ export default function Home() {
       await axios.get('api/init')
         .then(({ data }) => {
           setDataInit(data.data)
-          // console.log("response", data.data)
+          console.log("response", data.data)
         })
         .catch(err => {
           console.log("err", err)
@@ -113,7 +119,7 @@ export default function Home() {
         await axios.get(`api/rooms/${dataInit.secretkey}?locationcode=${locationcode}&code=${code}`)
           .then(({ data }) => {
             setUnits(data.data)
-            console.log(`res units ${data.data}`)
+            // console.log(`res units ${JSON.stringify(data.data)}`)
           })
           .catch(err => {
             console.log("err", err)
@@ -127,11 +133,45 @@ export default function Home() {
 
   }, [dataInit, locationcode, code])
 
+  useEffect(() => {
+    if (dataInit) {
+      const fetchSection = async () => {
+        setIsLoadingSection(prev => !prev)
+        await axios.get(`api/section/${dataInit.secretkey}`)
+          .then(({ data }) => {
+            setSections(data.data)
+            console.log(`res sections ${JSON.stringify(data.data)}`)
+          })
+          .catch(err => {
+            console.log("err", err)
+          })
+
+        setIsLoadingSection(prev => !prev)
+      }
+
+      fetchSection()
+    }
+
+  }, [dataInit])
+
+  useEffect(() => {
+
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/65e48bf48d261e1b5f67df6d/1ho2c5dbr';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+
+  }, [])
 
 
   return (
     <main className="min-h-screen mx-auto relative bg-white">
-      <Navbar wa={dataInit && dataInit.ims.whatsapp[0]} />
+      <Navbar wa={dataInit && dataInit.ims.whatsapp} />
       {
         banners.length === 0 ? Array.from({ length: 1 }, (_, index) => (
           <div className='w-full aspect-square md:aspect-[3/1]' key={index}>
@@ -139,7 +179,7 @@ export default function Home() {
           </div>
         ))
           : <Hero images={banners && banners} />}
-      <Header />
+      <Header children={sections && sections.top} />
       <div className="relative">
         <Filter locations={dataLocations && dataLocations} onClickFilter={onClickFilter} />
         <div className='-mt-36 md:-mt-16 -z-10 bg-[url("/background_produk.webp")] py-44' id='rooms'>
@@ -151,13 +191,13 @@ export default function Home() {
                   <div className="skeleton h-full w-full"></div>
                 </div>
               ))}</div>
-                : <RoomLists units={units && units} />}
+                : <RoomLists units={units && units} wa={dataInit && dataInit.ims.whatsapp} />}
             </div>
           </div>
         </div>
       </div>
       <Facilities data={dataLocations && dataLocations} isLoading={isLoadingLocation} />
-      <Footer wa={dataInit && dataInit.ims.whatsapp[0]} />
+      <Footer children={sections && sections.bottom} socialmedias={dataInit && dataInit.socialmedias} />
     </main>
   );
 }

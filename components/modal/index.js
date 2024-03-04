@@ -3,8 +3,9 @@ import { Modal, Carousel } from 'flowbite-react';
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from "react-icons/fa"
 import Link from 'next/link'
 import { RenderTagHtml } from '../rendertaghtml';
+import { Dropdown } from 'flowbite-react';
 
-const ModalRoom = ({ isOpen, onClose, data }) => {
+const ModalRoom = ({ isOpen, onClose, data, wa }) => {
     if (!isOpen) return null;
 
     let [current, setCurrent] = useState(0);
@@ -72,9 +73,14 @@ const ModalRoom = ({ isOpen, onClose, data }) => {
             </Modal.Body>
 
             <Modal.Footer>
-                <div className="grid grid-flow-col gap-3 w-full">
-                    <button onClick={onClose} className="min-w-full btn-primary bg-white text-black hover:bg-gray-200 btn-sm rounded-[8px] flex justify-center items-center border border-solid border-gray-300">Tutup</button>
-                    <Link target="_blank" rel="noopener noreferrer" href="https://api.whatsapp.com/send?phone=6281997008336&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai" className="min-w-full btn-primary md:w-32 btn-sm text-xs rounded-md flex justify-center items-center">Whatsapp kami</Link>
+                <div className="flex justify-center space-x-3 mx-auto">
+                    <button onClick={onClose} className=" btn-primary bg-white text-black hover:bg-gray-200 rounded-[8px] flex justify-center items-center border border-solid border-gray-300">Tutup</button>
+                    {/* <Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${wa}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20di%20${loc(data)}...`} className="min-w-full btn-primary md:w-32 btn-sm text-xs rounded-md flex justify-center items-center">Whatsapp</Link> */}
+                    <Dropdown label="Whatsapp" style={{ backgroundColor: "#0E4473" }} dismissOnClick={false}>
+                        {wa && Array.from(wa)?.map(w => (
+                            <Dropdown.Item><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20${loc(data)}...`} className="text-xs">{w}</Link></Dropdown.Item>
+                        ))}
+                    </Dropdown>
                 </div>
             </Modal.Footer>
 

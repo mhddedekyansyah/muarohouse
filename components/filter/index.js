@@ -39,7 +39,7 @@ const Filter = ({ locations, onClickFilter }) => {
                         </div>
                         <div className="relative inline-flex ">
                             <select className="select select-bordered px-7 w-full" value={location} onChange={onChangeLoc}>
-                                <option disabled value="" >Lokasi</option>
+                                <option value="" >Semua</option>
                                 {Array.from(locations)?.map(loc => (
                                     <option key={loc.code} value={loc.code}>{loc.name}</option>
                                 ))}
@@ -55,13 +55,11 @@ const Filter = ({ locations, onClickFilter }) => {
                         </div>
                         <div className="relative inline-flex">
                             <select className="select select-bordered px-7 w-full" value={tipe} onChange={onChangeTypeRoom}>
-                                <option disabled value="" >Tipe Kamar</option>
+                                <option value="" >Semua</option>
                                 {location && types?.map(type => {
                                     return type.unit_types.map(u => (<option key={u.code} value={u.code}>{u.name}</option>))
                                 })
                                 }
-
-
                             </select>
 
                             <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">
@@ -77,7 +75,6 @@ const Filter = ({ locations, onClickFilter }) => {
 
             </div>
         </div>
-
     )
 }
 

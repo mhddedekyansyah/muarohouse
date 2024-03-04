@@ -4,127 +4,15 @@ import Image from 'next/image';
 import React, { useState } from 'react'
 import { FaLocationArrow } from "react-icons/fa6";
 import { Carousel } from 'flowbite-react';
+import { facilities } from '@/constant';
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from "react-icons/fa"
+import { Unna } from "next/font/google";
+import Link from 'next/link';
 
-const facilities = [
-    {
-        "id": 1,
-        "location": "Lokasi 1",
-        "address": "Jl. Brigjend Katamso Blk. B-C No.56, Medan, Kota Medan, Sumatera Utara 20151",
-        "lists": [
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Laundry",
-                "icon": "/laundry.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-        ]
-    },
-    {
-        "id": 2,
-        "location": "Lokasi 2",
-        "address": "Jl. Brigjend Katamso Blk. B-C No.56, Medan, Kota Medan, Sumatera Utara 20151",
-        "lists": [
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Laundry",
-                "icon": "/laundry.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-        ]
-    },
-    {
-        "id": 3,
-        "location": "Lokasi 3",
-        "address": "Jl. Brigjend Katamso Blk. B-C No.56, Medan, Kota Medan, Sumatera Utara 20151",
-        "lists": [
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Laundry",
-                "icon": "/laundry.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-        ]
-    },
-]
+
+const unna = Unna({ subsets: ["latin"], weight: ['400'] });
+
+
 
 
 const Facilities = ({ data, isLoading }) => {
@@ -143,7 +31,7 @@ const Facilities = ({ data, isLoading }) => {
         <>
             <div className='hidden md:flex justify-center items-center bg-white'>
                 <div className='py-[60px]'>
-                    <h2 className='text-[#101828] font-semibold text-[36px] mb-[40px] text-center'>Lokasi dan Fasilitas Muaro House</h2>
+                    <h2 className={`${unna.className} text-[#101828] font-semibold text-[36px] mb-[40px] text-center`}>Lokasi dan Fasilitas Muaro House</h2>
                     <div className="flex justify-center items-center space-x-[32px]">
                         {(data.length === 0 || isLoading) ? Array.from({ length: 3 }, (_, index) => {
                             return <div key={index} className="flex flex-col gap-4 w-[384px] h-[546px] rounded-[16px] border border-solid border-gray-200  shadow-md">
@@ -178,7 +66,7 @@ const Facilities = ({ data, isLoading }) => {
                                     <h2 className='text-center text-[#101828] text-[20px] font-semibold'>{d?.name ?? "Muaro House Lokasi 1"}</h2>
                                     <p className='text-center text-[16px] text-gray-600 mb-[16px]'>{d?.address ?? "Jl. Tuasan"}</p>
 
-                                    <div className="flex items-center justify-center text-[#0E4473] font-semibold mb-[16px]"><span className='mr-2'>Google Maps</span> <FaLocationArrow /></div>
+                                    <div className="flex items-center justify-center text-[#0E4473] font-semibold mb-[16px]">{d.googlemap ? <Link target="_blank" rel="noopener noreferrer" href={d.googlemap} className='flex items-center'><span className='mr-2'>Google Maps</span> <FaLocationArrow /></Link> : <><span className='mr-2 cursor-pointer'>Google Maps</span><FaLocationArrow /></>}</div>
                                 </div>
                                 <div className="block"><hr /></div>
                                 <div className="m-[20px]">
@@ -292,8 +180,7 @@ const Facilities = ({ data, isLoading }) => {
                         </button>
                     </div>
                 </div>
-
-            </div >
+            </div>
         </>
 
     )

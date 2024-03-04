@@ -14,7 +14,7 @@ export async function GET(req, { params }) {
         })
 
         let data = units.data.data
-        console.log(units.data.data)
+        // console.log(units.data.data)
 
         return Response.json({ data })
     } catch (error) {

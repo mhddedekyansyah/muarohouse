@@ -8,6 +8,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
 import { usePathname } from 'next/navigation'
 import { RiMenu3Line } from "react-icons/ri";
+import { Dropdown } from 'flowbite-react';
 
 const Navbar = ({ wa }) => {
     const [nav, setNav] = useState(false)
@@ -51,13 +52,19 @@ const Navbar = ({ wa }) => {
                             </div>
 
                             {/* primary menu */}
-                            <div className='space-x-16 hidden md:block'>{navlinks.map(nav => {
-                                const active = pathname == nav.href
-                                return (
-                                    <Link href={nav.href} key={nav.id} className={`${active ? 'text-black font-semibold' : 'text-gray-500'} hover:text-gray-300 text-[16px]`}>{nav.label}</Link>
-                                )
-                            })}
-                                <Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${wa}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai`} className="btn-md btn-primary">Whatsapp kami</Link>
+                            <div className="hidden md:flex md:items-center">
+                                <div className='space-x-10  md:mr-10'>{navlinks.map(nav => {
+                                    const active = pathname == nav.href
+                                    return (
+                                        <Link href={nav.href} key={nav.id} className={`${active ? 'text-black font-semibold' : 'text-gray-500'} hover:text-gray-300 text-[16px]`}>{nav.label}</Link>
+                                    )
+                                })}
+                                </div>
+                                <Dropdown label="Whatsapp kami" size="sm" style={{ backgroundColor: "#0E4473" }} dismissOnClick={false}>
+                                    {wa && Array.from(wa)?.map(w => (
+                                        <Dropdown.Item><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20Muaro%20House%20soal...`} className="">{w}</Link></Dropdown.Item>
+                                    ))}
+                                </Dropdown>
                             </div>
                         </div>
 
@@ -65,14 +72,18 @@ const Navbar = ({ wa }) => {
                 </div>
 
                 {/* mobile menu */}
-                {nav && <div className='bg-white p-5 transition ease-out duration-500 absolute z-20 w-full md:hidden shadow-xl'>{navlinks.map(nav => {
+                {nav && <div className='bg-white p-5 transition ease-out duration-500 absolute z-20 w-full md:hidden shadow-xl min-w-full'>{navlinks.map(nav => {
                     const active = pathname == nav.href
                     return (
                         <Link key={nav.id} href={nav.href} onClick={toggle} className={`flex py-3 font-semibold`}>{nav.label}</Link>
                     )
                 })}
-                    <div className="w-full mx-auto">
-                        <Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${wa}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%Muaro%House`} className="btn-md w-full btn-primary flex justify-center mt-10 rounded-lg">Whatsapp kami</Link>
+                    <div className="min-w-full flex justify-center">
+                        <Dropdown className='min-w-full' style={{ backgroundColor: "#0E4473" }} label="Whatsapp kami" dismissOnClick={false}>
+                            {wa && Array.from(wa)?.map(w => (
+                                <Dropdown.Item><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20Muaro%20House%20soal...`} className="min-w-full">{w}</Link></Dropdown.Item>
+                            ))}
+                        </Dropdown>
                     </div>
 
                 </div>}
