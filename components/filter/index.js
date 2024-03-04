@@ -9,7 +9,7 @@ const Filter = ({ locations, onClickFilter }) => {
     const [tipe, setTipe] = useState("")
     const [resetType, setResetType] = useState(true)
     const [types, setTypes] = useState([])
-    
+
     const onChangeLoc = (e) => {
         console.log("locations", locations)
         // setResetType(prev => !prev)
@@ -39,7 +39,7 @@ const Filter = ({ locations, onClickFilter }) => {
                         </div>
                         <div className="relative inline-flex ">
                             <select className="select select-bordered px-7 w-full" value={location} onChange={onChangeLoc}>
-                                <option disabled  value="" >Lokasi</option>
+                                <option disabled value="" >Lokasi</option>
                                 {Array.from(locations)?.map(loc => (
                                     <option key={loc.code} value={loc.code}>{loc.name}</option>
                                 ))}
@@ -55,21 +55,21 @@ const Filter = ({ locations, onClickFilter }) => {
                         </div>
                         <div className="relative inline-flex">
                             <select className="select select-bordered px-7 w-full" value={tipe} onChange={onChangeTypeRoom}>
-                                <option disabled  value="" >Tipe Kamar</option>
+                                <option disabled value="" >Tipe Kamar</option>
                                 {location && types?.map(type => {
-                                            return type.unit_types.map(u => (<option key={u.code} value={u.code}>{u.name}</option>))
-                                        })
-                                    }
-                                
+                                    return type.unit_types.map(u => (<option key={u.code} value={u.code}>{u.name}</option>))
+                                })
+                                }
+
 
                             </select>
+
                             <div className="absolute inset-y-0 left-0 flex items-center px-2 pointer-events-none">
 
                                 <MdApartment className='text-[#0E4473]' />
                             </div>
                         </div>
                     </label>
-
                     <div className="mt-2 md:mt-8">
                         <button onClick={() => onClickFilter(location, tipe)} className='w-full btn-primary  rounded-md btn-md flex justify-center items-center'>Ayo cari</button>
                     </div>
