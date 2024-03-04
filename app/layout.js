@@ -4,7 +4,6 @@ import "./globals.css";
 import ScrollToTop from "@/components/scroll";
 import axios from "axios";
 import Home from "./page";
-import { data } from "autoprefixer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,7 +18,7 @@ export async function generateMetadata() {
     return {
       title: meta.name ?? "Muaro House",
       description: meta.seos.meta_description ?? "Muaro House",
-      keywords: "",
+      keywords: [meta.seos.meta_keyword],
       icons: {
         icon:
           "https://s3.nl-ams.scw.cloud/izy.bucket/faf9dadf6956721cb693c1af130c7785/logos/CQmdLFR2tY0PJg6NrGOU1zk3bZ6ZMaIh5Ptk2H1I.jpeg" ||
