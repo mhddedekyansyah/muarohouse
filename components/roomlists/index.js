@@ -50,7 +50,7 @@ const RoomLists = ({ units, isLoading, wa }) => {
                                     return "None"
                             }
                         }
-                        return <div className="card w-80 m-2 bg-base-100 shadow-2xl" key={i}>
+                        return <div className="card w-80 m-2 bg-base-100 shadow-2xl" key={i} >
                             <figure><img src={`${(data.images && data.images[0]) ?? "/tipex.webp"}`} alt="..." className='h-[218px] w-full' /></figure>
                             <div className="card-body">
                                 <div className='space-y-2'>
@@ -87,7 +87,7 @@ const RoomLists = ({ units, isLoading, wa }) => {
                 }
             })}
 
-            {/* </Suspense> */}
+
 
         </>
 

@@ -180,22 +180,22 @@ export default function Home() {
         ))
           : <Hero images={banners && banners} />}
       <Header children={sections && sections.top} />
-      <div className="relative">
-        <Filter locations={dataLocations && dataLocations} onClickFilter={onClickFilter} />
-        <div className='-mt-36 md:-mt-16 -z-10 bg-[url("/background_produk.webp")] py-44' id='rooms'>
-          {/* card primary */}
-          <div className="md:block mx-auto">
-            <div className="flex flex-wrap justify-center">
-              {(!units || isUnitLoading) ? <div className="grid md:grid-flow-col gap-3">{Array.from({ length: 3 }, (_, index) => (
-                <div className="w-80 h-80" key={index}>
-                  <div className="skeleton h-full w-full"></div>
-                </div>
-              ))}</div>
-                : <RoomLists units={units && units} wa={dataInit && dataInit.ims.whatsapp} />}
-            </div>
+
+      <Filter locations={dataLocations && dataLocations} onClickFilter={onClickFilter} />
+      <div className='-mt-36 md:-mt-16 -z-10 bg-[url("/background_produk.webp")] py-44' id='rooms'>
+        {/* card primary */}
+        <div className="md:block mx-auto">
+          <div className="flex flex-wrap justify-center">
+            {(!units || isUnitLoading) ? <div className="grid md:grid-flow-col gap-3">{Array.from({ length: 3 }, (_, index) => (
+              <div className="w-80 h-80" key={index}>
+                <div className="skeleton h-full w-full"></div>
+              </div>
+            ))}</div>
+              : <RoomLists units={units && units} wa={dataInit && dataInit.ims.whatsapp} />}
           </div>
         </div>
       </div>
+
       <Facilities data={dataLocations && dataLocations} isLoading={isLoadingLocation} />
       <Footer children={sections && sections.bottom} socialmedias={dataInit && dataInit.socialmedias} />
     </main>

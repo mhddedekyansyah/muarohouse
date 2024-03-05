@@ -18,6 +18,7 @@ const Navbar = ({ wa }) => {
         setNav(!nav)
     }
 
+
     useEffect(() => {
         const toggleVisibility = () => {
             if (window.scrollY > 300) {
@@ -56,7 +57,7 @@ const Navbar = ({ wa }) => {
                                 <div className='space-x-10  md:mr-10'>{navlinks.map(nav => {
                                     const active = pathname == nav.href
                                     return (
-                                        <Link href={nav.href} key={nav.id} className={`${active ? 'text-black font-semibold' : 'text-gray-500'} hover:text-gray-300 text-[16px]`}>{nav.label}</Link>
+                                        <a href={nav.href} key={nav.id} onScroll='smooth' className={`${active ? 'text-black font-semibold' : 'text-gray-500'} hover:text-gray-300 text-[16px]`}>{nav.label}</a>
                                     )
                                 })}
                                 </div>
