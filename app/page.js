@@ -17,10 +17,7 @@ import axios from "axios";
 
 
 export default function Home() {
-  if (typeof window !== "undefined") {
-    let value = localStorage.getItem("metadata") || ""
-    console.log("metadata", value)
-  }
+  
   const [dataInit, setDataInit] = useState()
   const [isUnitLoading, setUnitLoading] = useState(false)
   const [locationcode, setLocationcode] = useState("")
@@ -46,7 +43,7 @@ export default function Home() {
   }, [])
 
   const onClickFilter = useCallback((locationcode, code) => {
-    console.log(`locationcode ${locationcode} code ${code}`)
+    
     setLocationcode(locationcode)
     setCode(code)
   }, [location, code])
@@ -58,7 +55,7 @@ export default function Home() {
       await axios.get('api/init')
         .then(({ data }) => {
           setDataInit(data.data)
-          console.log("response", data.data)
+       
         })
         .catch(err => {
           console.log("err", err)
@@ -76,8 +73,90 @@ export default function Home() {
         setLoadingLocation(prev => !prev)
         await axios.get(`api/location/${dataInit.secretkey}`)
           .then(({ data }) => {
-            setDataLocations(data.data)
-            // console.log("response locations", data.data)
+      
+            const [TA, TS, PC] = data.data
+            TA.facilities = [
+              {
+                  "name": "Wifi",
+                  "icon": "/wifi.svg"
+              },
+              {
+                  "name": "Cctv",
+                  "icon": "/camera.svg"
+              },
+              {
+                  "name": "Ruang Jemur",
+                  "icon": "/jemur.svg"
+              },
+              {
+                  "name": "Ruang Santai",
+                  "icon": "/balcony.svg"
+              },
+              {
+                  "name": "Parkir Mobil",
+                  "icon": "/car.svg"
+              },
+              {
+                  "name": "Parkir Motor",
+                  "icon": "/two_wheleer.svg"
+              },
+              {
+                  "name": "Security",
+                  "icon": "/security.svg"
+              },
+          ]
+
+          TS.facilities = [
+            {
+                "name": "Wifi",
+                "icon": "/wifi.svg"
+            },
+            {
+                "name": "Cctv",
+                "icon": "/camera.svg"
+            },
+            {
+                "name": "Ruang Jemur",
+                "icon": "/jemur.svg"
+            },
+           
+            {
+                "name": "Parkir Motor",
+                "icon": "/two_wheleer.svg"
+            },
+            {
+                "name": "Penjaga Kos",
+                "icon": "/dry_cleaning.svg"
+            },  
+        ]
+
+        PC.facilities = [
+          {
+              "name": "Wifi",
+              "icon": "/wifi.svg"
+          },
+          {
+              "name": "Cctv",
+              "icon": "/camera.svg"
+          },
+          {
+              "name": "Ruang Jemur",
+              "icon": "/jemur.svg"
+          },
+         
+          {
+              "name": "Parkir Motor",
+              "icon": "/two_wheleer.svg"
+          },
+          {
+              "name": "Penjaga Kos",
+              "icon": "/dry_cleaning.svg"
+          },  
+      ]
+
+            setDataLocations([TA, TS, PC])
+        
+          
           })
           .catch(err => {
             console.log("err", err)
@@ -119,7 +198,7 @@ export default function Home() {
         await axios.get(`api/rooms/${dataInit.secretkey}?locationcode=${locationcode}&code=${code}`)
           .then(({ data }) => {
             setUnits(data.data)
-            // console.log(`res units ${JSON.stringify(data.data)}`)
+
           })
           .catch(err => {
             console.log("err", err)
@@ -140,7 +219,7 @@ export default function Home() {
         await axios.get(`api/section/${dataInit.secretkey}`)
           .then(({ data }) => {
             setSections(data.data)
-            console.log(`res sections ${JSON.stringify(data.data)}`)
+         
           })
           .catch(err => {
             console.log("err", err)

@@ -14,7 +14,6 @@ export async function GET(req, { params }) {
 
         let data = res.data.data
 
-        // console.log(data)
 
         return Response.json({ data })
     } catch (error) {

@@ -11,13 +11,9 @@ const Filter = ({ locations, onClickFilter }) => {
     const [types, setTypes] = useState([])
 
     const onChangeLoc = (e) => {
-        console.log("locations", locations)
         // setResetType(prev => !prev)
         setLocation(e.target.value)
         const data = locations?.filter(location => location.code == e.target.value)
-
-
-        console.log("data filter", data)
 
         setTypes(data)
         setTipe("")

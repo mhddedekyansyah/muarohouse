@@ -37,7 +37,7 @@ const RoomLists = ({ units, isLoading, wa }) => {
                 if (units.hasOwnProperty(key)) {
 
                     return Array.from(units[key]).map((data, i) => {
-                        console.log("Data", data.images && data.images[0])
+                
                         const loc = () => {
                             switch (data.locationcode) {
                                 case 'PC':
@@ -76,8 +76,8 @@ const RoomLists = ({ units, isLoading, wa }) => {
                                     {/* <button className="w-full btn-primary btn-sm text-white flex  justify-center text-xs rounded-[8px]">WhatsApp</button> */}
                                     {/* <Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${wa}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20di%20${loc(data)}...`} className="btn-sm text-xs w-full btn-primary flex justify-center rounded-[8px]">Whatsapp</Link> */}
                                     <Dropdown label="Whatsapp" size='sm' style={{ backgroundColor: "#0E4473" }} dismissOnClick={false}>
-                                        {wa && Array.from(wa)?.map(w => (
-                                            <Dropdown.Item><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20${loc(data)}...`} className="text-xs">{w}</Link></Dropdown.Item>
+                                        {wa && Array.from(wa)?.map((w, i) => (
+                                            <Dropdown.Item key={i}><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20${loc(data)}...`} className="text-xs">{w}</Link></Dropdown.Item>
                                         ))}
                                     </Dropdown>
                                 </div>

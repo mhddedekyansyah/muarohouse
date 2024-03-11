@@ -28,7 +28,7 @@ const Footer = ({ children, socialmedias }) => {
                             <p className='ml-3 text-black'>instagram</p>
                         </Link> */}
                         {socialmedias && Object.keys(socialmedias)?.map((key, values) => (
-                            <Dropdown label={key} size='sm' style={{ backgroundColor: "white", color: "black", width: "100%" }} dismissOnClick={false}>
+                            <Dropdown key={key} label={key} size='sm' style={{ backgroundColor: "white", color: "black", width: "100%" }} dismissOnClick={false}>
 
                                 {Array.from(socialmedias[key]).map((d, i) => (
                                     <Dropdown.Item key={i}><Link target="_blank" rel="noopener noreferrer" href={d} className="text-xs">{d}</Link></Dropdown.Item>

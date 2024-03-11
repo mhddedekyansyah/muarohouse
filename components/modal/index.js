@@ -77,8 +77,8 @@ const ModalRoom = ({ isOpen, onClose, data, wa }) => {
                     <button onClick={onClose} className=" btn-primary bg-white text-black hover:bg-gray-200 rounded-[8px] flex justify-center items-center border border-solid border-gray-300">Tutup</button>
                     {/* <Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${wa}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20di%20${loc(data)}...`} className="min-w-full btn-primary md:w-32 btn-sm text-xs rounded-md flex justify-center items-center">Whatsapp</Link> */}
                     <Dropdown label="Whatsapp" style={{ backgroundColor: "#0E4473" }} dismissOnClick={false}>
-                        {wa && Array.from(wa)?.map(w => (
-                            <Dropdown.Item><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20${loc(data)}...`} className="text-xs">{w}</Link></Dropdown.Item>
+                        {wa && Array.from(wa)?.map((w, i) => (
+                            <Dropdown.Item key={i}><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20mengenai%20${data.name}%20${loc(data)}...`} className="text-xs">{w}</Link></Dropdown.Item>
                         ))}
                     </Dropdown>
                 </div>

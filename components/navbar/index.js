@@ -57,13 +57,13 @@ const Navbar = ({ wa }) => {
                                 <div className='space-x-10  md:mr-10'>{navlinks.map(nav => {
                                     const active = pathname == nav.href
                                     return (
-                                        <a href={nav.href} key={nav.id} onScroll='smooth' className={`${active ? 'text-black font-semibold' : 'text-gray-500'} hover:text-gray-300 text-[16px]`}>{nav.label}</a>
+                                        <a href={nav.href} key={nav.id} className={`${active ? 'text-black font-semibold' : 'text-gray-500'} hover:text-gray-300 text-[16px]`}>{nav.label}</a>
                                     )
                                 })}
                                 </div>
                                 <Dropdown label="Whatsapp kami" size="sm" style={{ backgroundColor: "#0E4473" }} dismissOnClick={false}>
-                                    {wa && Array.from(wa)?.map(w => (
-                                        <Dropdown.Item><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20Muaro%20House%20soal...`} className="">{w}</Link></Dropdown.Item>
+                                    {wa && Array.from(wa)?.map((w, i) => (
+                                        <Dropdown.Item key={i}><Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send?phone=${w}&amp;text=Halo,%20Saya%20ingin%20bertanya%20Muaro%20House%20soal...`} className="">{w}</Link></Dropdown.Item>
                                     ))}
                                 </Dropdown>
                             </div>

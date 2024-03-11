@@ -14,122 +14,93 @@ export const navlinks = [
 
 export const location = "location"
 
-export const facilities = [
-    {
-        "id": 1,
-        "location": "Lokasi 1",
-        "address": "Jl. Brigjend Katamso Blk. B-C No.56, Medan, Kota Medan, Sumatera Utara 20151",
+export const facilities = {
+    "TA": {
         "lists": [
             {
                 "name": "Wifi",
                 "icon": "/wifi.svg"
             },
             {
-                "name": "Laundry",
-                "icon": "/laundry.svg"
+                "name": "Cctv",
+                "icon": "/camera.svg"
             },
             {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
+                "name": "Ruang Jemur",
+                "icon": "/jemur.svg"
             },
             {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
+                "name": "Ruang Santai",
+                "icon": "/balcony.svg"
             },
             {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
+                "name": "Parkir Mobil",
+                "icon": "/car.svg"
             },
             {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
+                "name": "Parkir Motor",
+                "icon": "/two_wheleer.svg"
             },
             {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
+                "name": "Security",
+                "icon": "/security.svg"
             },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-        ]
-    },
-    {
-        "id": 2,
-        "location": "Lokasi 2",
-        "address": "Jl. Brigjend Katamso Blk. B-C No.56, Medan, Kota Medan, Sumatera Utara 20151",
-        "lists": [
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Laundry",
-                "icon": "/laundry.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-        ]
-    },
-    {
-        "id": 3,
-        "location": "Lokasi 3",
-        "address": "Jl. Brigjend Katamso Blk. B-C No.56, Medan, Kota Medan, Sumatera Utara 20151",
-        "lists": [
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Laundry",
-                "icon": "/laundry.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-            {
-                "name": "Wifi",
-                "icon": "/wifi.svg"
-            },
-        ]
-    },
-]
+        ],
+        "PC":{
+            "lists": [
+                {
+                    "name": "Wifi",
+                    "icon": "/wifi.svg"
+                },
+                {
+                    "name": "Cctv",
+                    "icon": "/camera.svg"
+                },
+                {
+                    "name": "Ruang Jemur",
+                    "icon": "/jemur.svg"
+                },
+               
+                {
+                    "name": "Parkir Motor",
+                    "icon": "/two_wheleer.svg"
+                },
+                {
+                    "name": "Penjaga Kos",
+                    "icon": "/dry_cleaning.svg"
+                },  
+            ]
+        },
+        "TS": {
+            "lists": [
+                {
+                    "name": "Wifi",
+                    "icon": "/wifi.svg"
+                },
+                {
+                    "name": "Cctv",
+                    "icon": "/camera.svg"
+                },
+                {
+                    "name": "Ruang Jemur",
+                    "icon": "/jemur.svg"
+                },
+               
+                {
+                    "name": "Parkir Motor",
+                    "icon": "/two_wheleer.svg"
+                },
+                {
+                    "name": "Penjaga Kos",
+                    "icon": "/dry_cleaning.svg"
+                },  
+            ]
+        }
+    }
+    
+       
+        
+    
+   
+   
+}

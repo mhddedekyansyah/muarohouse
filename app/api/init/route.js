@@ -6,9 +6,6 @@ export async function GET() {
 
         let data = resInit.data.data
 
-
-
-
         return Response.json({ data })
     } catch (error) {
         return Response.json({ res: error })
