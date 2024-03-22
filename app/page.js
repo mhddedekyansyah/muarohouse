@@ -17,7 +17,7 @@ import axios from "axios";
 
 
 export default function Home() {
-  
+
   const [dataInit, setDataInit] = useState()
   const [isUnitLoading, setUnitLoading] = useState(false)
   const [locationcode, setLocationcode] = useState("")
@@ -43,7 +43,7 @@ export default function Home() {
   }, [])
 
   const onClickFilter = useCallback((locationcode, code) => {
-    
+
     setLocationcode(locationcode)
     setCode(code)
   }, [location, code])
@@ -55,7 +55,7 @@ export default function Home() {
       await axios.get('api/init')
         .then(({ data }) => {
           setDataInit(data.data)
-       
+
         })
         .catch(err => {
           console.log("err", err)
@@ -73,90 +73,90 @@ export default function Home() {
         setLoadingLocation(prev => !prev)
         await axios.get(`api/location/${dataInit.secretkey}`)
           .then(({ data }) => {
-      
+
             const [TA, TS, PC] = data.data
             TA.facilities = [
               {
-                  "name": "Wifi",
-                  "icon": "/wifi.svg"
-              },
-              {
-                  "name": "Cctv",
-                  "icon": "/camera.svg"
-              },
-              {
-                  "name": "Ruang Jemur",
-                  "icon": "/jemur.svg"
-              },
-              {
-                  "name": "Ruang Santai",
-                  "icon": "/balcony.svg"
-              },
-              {
-                  "name": "Parkir Mobil",
-                  "icon": "/car.svg"
-              },
-              {
-                  "name": "Parkir Motor",
-                  "icon": "/two_wheleer.svg"
-              },
-              {
-                  "name": "Security",
-                  "icon": "/security.svg"
-              },
-          ]
-
-          TS.facilities = [
-            {
                 "name": "Wifi",
                 "icon": "/wifi.svg"
-            },
-            {
+              },
+              {
                 "name": "Cctv",
                 "icon": "/camera.svg"
-            },
-            {
+              },
+              {
                 "name": "Ruang Jemur",
                 "icon": "/jemur.svg"
-            },
-           
-            {
+              },
+              {
+                "name": "Ruang Santai",
+                "icon": "/balcony.svg"
+              },
+              {
+                "name": "Parkir Mobil",
+                "icon": "/car.svg"
+              },
+              {
                 "name": "Parkir Motor",
                 "icon": "/two_wheleer.svg"
-            },
-            {
+              },
+              {
+                "name": "Security",
+                "icon": "/security.svg"
+              },
+            ]
+
+            TS.facilities = [
+              {
+                "name": "Wifi",
+                "icon": "/wifi.svg"
+              },
+              {
+                "name": "Cctv",
+                "icon": "/camera.svg"
+              },
+              {
+                "name": "Ruang Jemur",
+                "icon": "/jemur.svg"
+              },
+
+              {
+                "name": "Parkir Motor",
+                "icon": "/two_wheleer.svg"
+              },
+              {
                 "name": "Penjaga Kos",
                 "icon": "/dry_cleaning.svg"
-            },  
-        ]
+              },
+            ]
 
-        PC.facilities = [
-          {
-              "name": "Wifi",
-              "icon": "/wifi.svg"
-          },
-          {
-              "name": "Cctv",
-              "icon": "/camera.svg"
-          },
-          {
-              "name": "Ruang Jemur",
-              "icon": "/jemur.svg"
-          },
-         
-          {
-              "name": "Parkir Motor",
-              "icon": "/two_wheleer.svg"
-          },
-          {
-              "name": "Penjaga Kos",
-              "icon": "/dry_cleaning.svg"
-          },  
-      ]
+            PC.facilities = [
+              {
+                "name": "Wifi",
+                "icon": "/wifi.svg"
+              },
+              {
+                "name": "Cctv",
+                "icon": "/camera.svg"
+              },
+              {
+                "name": "Ruang Jemur",
+                "icon": "/jemur.svg"
+              },
+
+              {
+                "name": "Parkir Motor",
+                "icon": "/two_wheleer.svg"
+              },
+              {
+                "name": "Penjaga Kos",
+                "icon": "/dry_cleaning.svg"
+              },
+            ]
 
             setDataLocations([TA, TS, PC])
-        
-          
+
+
           })
           .catch(err => {
             console.log("err", err)
@@ -219,7 +219,7 @@ export default function Home() {
         await axios.get(`api/section/${dataInit.secretkey}`)
           .then(({ data }) => {
             setSections(data.data)
-         
+
           })
           .catch(err => {
             console.log("err", err)
@@ -261,10 +261,10 @@ export default function Home() {
       <Header children={sections && sections.top} />
 
       <Filter locations={dataLocations && dataLocations} onClickFilter={onClickFilter} />
-      <div className='-mt-36 md:-mt-16 -z-10 bg-[url("/background_produk.webp")] py-44' id='rooms'>
+      <div className='-mt-36 md:-mt-16 -z-10 bg-[url("/background_produk.webp")] px-5 py-44' id='rooms'>
         {/* card primary */}
-        <div className="md:block mx-auto">
-          <div className="flex flex-wrap justify-center">
+        <div className="md:block mx-auto ">
+          <div className="flex flex-wrap justify-center space-y-[28px]">
             {(!units || isUnitLoading) ? <div className="grid md:grid-flow-col gap-3">{Array.from({ length: 3 }, (_, index) => (
               <div className="w-80 h-80" key={index}>
                 <div className="skeleton h-full w-full"></div>
