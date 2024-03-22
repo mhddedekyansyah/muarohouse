@@ -56,19 +56,20 @@ const RoomLists = ({ units, isLoading, wa }) => {
                             <div className="card w-[1200px] bg-base-100 shadow-xl">
                                 <div className="md:flex">
                                     <div className="h-56 md:min-h-full md:w-[388px] w-full">
-                                        <Carousel pauseOnHover>
-                                            {data.images ? data.images.map((image, i) => (
+                                        {data.images ? <Carousel pauseOnHover>
+                                            {data.images && data.images.map((image, i) => (
                                                 <img src={image} alt="..." key={i} className='min-h-full' />
-                                            )) : <img src='/tipex.webp' alt="..." className='min-h-full' />}
-                                        </Carousel>
+                                            ))}
+                                        </Carousel> : <img src='/tipex.webp' alt="..." className='min-h-full rounded-lg' />}
+
                                     </div>
-                                    <div className="grid grid-flow-row md:grid-flow-col md:grid-cols-4 w-full">
+                                    <div className="grid grid-flow-row md:grid-flow-col md:grid-cols-3 w-full">
                                         <div className="md:flex md:col-span-2">
                                             <div className="p-[12px] w-full">
                                                 <div className={`badge ${data.locationcode == 'TA' ? 'bg-[#D2972F]' : data.locationcode == 'TS' ? 'bg-[#0891B2]' : 'bg-[#0D9488] '} p-3 text-white`}>
                                                     Lokasi {loc(data)}
                                                 </div>
-                                                <h2 className="card-title">{data.name}</h2>
+                                                <h2 className="card-title mt-2">{data.name}</h2>
                                                 <h3 className={`${data.total == 0 ? 'text-red-600' : 'text-green-600'} text-[24px] font-semibold`}>{data.total} Tersedia</h3>
                                                 <hr />
                                                 <ol>
@@ -76,7 +77,7 @@ const RoomLists = ({ units, isLoading, wa }) => {
                                                         <p className='text-gray-700 text-[14px] font-semibold'>Fasilitas</p>
                                                         <ul className='mt-1 list-disc list-inside text-[#475467] font-light grid grid-cols-2 gap-1'>
                                                             {data.facilities.map((facility, i) => (
-                                                                <li key={i}>{facility}</li>
+                                                                <li key={i} className='text-sm'>{facility}</li>
                                                             ))}
                                                         </ul>
                                                     </li>
@@ -85,9 +86,9 @@ const RoomLists = ({ units, isLoading, wa }) => {
                                             <div className="border-l-2 h-full hidden md:block"></div>
                                         </div>
                                         <hr className='md:hidden' />
-                                        <div className="place-self-start p-[12px]">
+                                        <div className="p-[12px]">
                                             <h2 className='text-gray-700 text-[14px] font-semibold'>Harga</h2>
-                                            {data.additional_description ? <RenderTagHtml children={data.additional_description} className='ps-5 mt-1 list-disc list-inside text-[#475467] font-light' /> : '-'}
+                                            {data.additional_description ? <RenderTagHtml children={data.additional_description} className='mt-1 list-disc list-inside text-[#475467] font-light' /> : '-'}
                                         </div>
 
                                         <div className="md:place-self-end p-[12px]">
