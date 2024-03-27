@@ -53,7 +53,7 @@ const RoomLists = ({ units, isLoading, wa }) => {
                             }
                         }
                         return (
-                            <div className="card w-[1200px] bg-base-100 shadow-xl">
+                            <div key={i} className="card w-[1200px] bg-base-100 shadow-xl">
                                 <div className="md:flex">
                                     <div className="h-56 md:min-h-full md:w-[388px] w-full">
                                         {data.images ? <Carousel pauseOnHover>

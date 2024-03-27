@@ -1,12 +1,20 @@
 import axios from "axios";
 
+// export const dynamic = 'no-store'
 export async function GET() {
     try {
-        const resInit = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/init?host=muarohouse.com`)
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/init?host=muarohouse.com`,
+            // { cache: 'no-store' }
+            {
+                next: { revalidate: 1 }
+            }
+        );
 
-        let data = resInit.data.data
 
-        return Response.json({ data })
+        let responseJson = await response.json()
+
+        return Response.json({ responseJson })
     } catch (error) {
         return Response.json({ res: error })
     }

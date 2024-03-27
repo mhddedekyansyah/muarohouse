@@ -46,16 +46,43 @@ export async function generateMetadata() {
 
 }
 
+const fetchInit = async () => {
 
-export default function RootLayout({ children }) {
+  try {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/init?host=muarohouse.com`,
+      { cache: 'no-store' }
+    )
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data init')
+    }
 
+    // setDataInit(resJson.responseJson.data)
+    return res.json()
+    // console.log("init", resJson.responseJson.data)
+  } catch (error) {
+    console.log("err", error)
+  }
+  // await fetch('api/init')
+  //   .then(({ data }) => {
+  //     setDataInit(data.data)
+  //     console.log("res init", data)
+  //   })
+  //   .catch(err => {
+  //     console.log("err", err)
+  //   })
+
+}
+
+export default async function RootLayout({ children }) {
+  const init = await fetchInit()
 
   return (
     <html lang="en">
 
       <body className={inter.className} style={{ overflowX: "hidden" }}>
 
-        <Home />
+        <Home init={init} />
         <ScrollToTop />
       </body>
     </html>
